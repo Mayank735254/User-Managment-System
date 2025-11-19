@@ -1,0 +1,63 @@
+{% extends 'app.html' %}
+{% block content %}
+
+<div class="container mt-5">
+    <h2 class="mb-4">Registered Users</h2>
+
+    <form class="form-inline mb-4" method="GET" action="{{ url_for('list_users') }}">
+        
+        <input type="text" name="search" class="form-control mr-sm-2" placeholder="Search Name or Email" 
+               value="{{ search_term or '' }}">
+        
+        <select name="country" class="form-control mr-sm-2">
+            <option value="">Filter by Country</option>
+            {% for country in countries %}
+                <option value="{{ country }}" {% if country == country_filter %}selected{% endif %}>
+                    {{ country }}
+                </option>
+            {% endfor %}
+        </select>
+        
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Apply</button>
+        {% if search_term or country_filter %}
+            <a href="{{ url_for('list_users') }}" class="btn btn-outline-secondary ml-2">Clear</a>
+        {% endif %}
+    </form>
+
+    {% if users %}
+    <div class="table-responsive shadow-sm">
+    <table class="table table-striped mb-0">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Phone</th>
+                <th>City</th>
+                <th>Country</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user[0] }}</td>
+                <td><a href="{{ url_for('user_details', user_id=user[0]) }}">{{ user[1] }}</a></td>
+                <td>{{ user[2] }}</td>
+                <td>{{ user[3] }}</td>
+                <td>{{ user[4] }}</td>
+                <td>{{ user[5] }}</td>
+                <td>{{ user[6] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+    {% else %}
+    <div class="alert alert-warning" role="alert">
+        No users found matching the criteria.
+    </div>
+    {% endif %}
+</div>
+
+{% endblock %}

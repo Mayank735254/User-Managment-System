@@ -1,0 +1,31 @@
+{% extends 'app.html' %}
+{% block content %}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h3>User Details</h3>
+        <a href="{{ url_for('dashboard') }}" class="btn btn-outline-secondary">Back to Dashboard</a>
+    </div>
+
+    {% if is_admin %}
+        <p class="text-info">Viewing as Admin.</p>
+    {% else %}
+        <p class="text-info">Viewing your own details.</p>
+    {% endif %}
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h5 class="card-title">{{ user.name }}</h5>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><strong>ID:</strong> {{ user.id }}</li>
+                <li class="list-group-item"><strong>Email:</strong> {{ user.email }}</li>
+                <li class="list-group-item"><strong>Role:</strong> {{ user.role }}</li>
+                <li class="list-group-item"><strong>Phone:</strong> {{ user.phone or 'N/A' }}</li>
+                <li class="list-group-item"><strong>City:</strong> {{ user.city or 'N/A' }}</li>
+                <li class="list-group-item"><strong>Country:</strong> {{ user.country or 'N/A' }}</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,114 @@
+{% extends 'app.html' %}
+{% block content %}
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h3 class="card-title">Create an account</h3>
+    <form action="/register" method="POST">
+        {{ form.hidden_tag() }}
+    
+    <div class="form-group">
+      {{ form.name.label(for="name")}}
+      {{ form.name(id="name", class="form-control")}}
+
+      {% if form.name.errors %}
+            <ul class="text-danger">
+                {% for error in form.name.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+      {% endif %}
+    </div>
+
+    <div class="form-group">
+        {{ form.email.label(for="email")}}
+        {{ form.email(id="email", class="form-control")}}
+  
+        {% if form.email.errors %}
+              <ul class="text-danger">
+                  {% for error in form.email.errors %}
+                      <li>{{ error }}</li>
+                  {% endfor %}
+              </ul>
+        {% endif %}
+    </div>
+
+    <div class="form-group">
+        {{ form.password.label(for="password")}}
+        {{ form.password(id="password", class="form-control")}}
+
+        {% if form.password.errors %}
+                <ul class="text-danger">
+                    {% for error in form.password.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+        {% endif %}
+    </div>
+
+    <div class="form-group">
+        {{ form.role.label(for="role")}}
+        {{ form.role(id="role", class="form-control")}}
+
+        {% if form.role.errors %}
+                <ul class="text-danger">
+                    {% for error in form.role.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+        {% endif %}
+    </div>
+
+    <div class="form-group">
+        {{ form.phone.label(for="phone")}}
+        {{ form.phone(id="phone", class="form-control")}}
+
+        {% if form.phone.errors %}
+                <ul class="text-danger">
+                    {% for error in form.phone.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+        {% endif %}
+    </div>
+
+    <div class="form-group">
+        {{ form.city.label(for="city")}}
+        {{ form.city(id="city", class="form-control")}}
+
+        {% if form.city.errors %}
+                <ul class="text-danger">
+                    {% for error in form.city.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+        {% endif %}
+    </div>
+
+    <div class="form-group">
+        {{ form.country.label(for="country")}}
+        {{ form.country(id="country", class="form-control")}}
+
+        {% if form.country.errors %}
+                <ul class="text-danger">
+                    {% for error in form.country.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+        {% endif %}
+    </div>
+
+
+        <div class="d-flex justify-content-between mt-4">
+            {{ form.submit(class="btn btn-success")}}
+            <a href="/login" class="btn btn-outline-secondary">Already have an account?</a>
+        </div>
+    </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
